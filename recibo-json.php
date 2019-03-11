@@ -49,7 +49,7 @@ for ($x = 0; $x < $size; ++$x) {
     }
 
 
-	$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$x.'.'.$extension : $imagen.$x.'.'.$extension;
+	$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$x.'.'.$extension : $imagen.'.'.$extension;
 
 }
 
