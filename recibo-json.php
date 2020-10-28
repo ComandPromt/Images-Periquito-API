@@ -61,7 +61,13 @@ if($imagenes[0]!=''){
 			$extension = 'jpg';
 		}
 		
-		$imagenes_procesadas[] =($size>1) ? $imagen.'_000000'.$y.'.'.$extension : $imagen.'.'.$extension;
+		$paso=""+$y;
+		
+		if($y<10){
+			$paso="0"+$y;
+		}
+		
+		$imagenes_procesadas[] =($size>1) ? $imagen.'_000000'.$paso.'.'.$extension : $imagen.'.'.$extension;
 		
 		$y++;
 		
