@@ -49,6 +49,8 @@ if($imagenes[0]!=''){
 	
 	$y=1;
 	
+	$paso="";
+
 	for ($x = 0; $x < $size; ++$x) {
 		
 		$longitud = strlen($imagenes[$x]);
@@ -60,11 +62,13 @@ if($imagenes[0]!=''){
 		if ($extension == 'peg') {
 			$extension = 'jpg';
 		}
-		
-		$paso=""+$y;
-		
+				
 		if($y<10){
-			$paso="0"+$y;
+			$paso="0".$y;
+		}
+		
+		else{
+			$paso="".$y;
 		}
 		
 		$imagenes_procesadas[] =($size>1) ? $imagen.'_000000'.$paso.'.'.$extension : $imagen.'.'.$extension;
