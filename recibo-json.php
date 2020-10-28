@@ -3,11 +3,18 @@
 function deliver_response($status, $imagenes, $imagenes_nuevas)
 {
     header("HTTP/1.1 $status $status_message");
+    
+    
     $response['respuesta'] = $status;
+    
     $response['imagenes'] = $imagenes;
+    
     $response['imagenes_bd'] = $imagenes_nuevas;
+    
     $json_response = json_encode($response);
+    
     echo $json_response;
+
 }
 
 date_default_timezone_set('Europe/Madrid');
@@ -19,13 +26,17 @@ $imagenes = array();
 if ($_GET['imagenes'][0]=="[") {
 
    $imagenes = substr($_GET['imagenes'],1,strlen($_GET['imagenes'])-2);
+   
    $imagenes = str_replace('"','',$imagenes);
-} else {
+}
+
+else {
     $imagenes = $_GET['imagenes'];
 
 }
 
-    $imagenes = explode(',', $imagenes);
+$imagenes = explode(',', $imagenes);
+
 sort($imagenes);
 
 $imagenes_procesadas = array();
@@ -36,22 +47,26 @@ $size=count($imagenes);
 
 if($imagenes[0]!=''){
 	
-for ($x = 0; $x < $size; ++$x) {
+	$y=1;
 	
-    $longitud = strlen($imagenes[$x]);
+	for ($x = 0; $x < $size; ++$x) {
+		
+		$longitud = strlen($imagenes[$x]);
+	
+		$extension = substr($imagenes[$x], $longitud - 3, $longitud);
+	
+		$extension = strtolower($extension);
+	
+		if ($extension == 'peg') {
+			$extension = 'jpg';
+		}
+		
+		$imagenes_procesadas[] =($size>1) ? $imagen.'_000000'.$y.'.'.$extension : $imagen.'.'.$extension;
+		
+		$y++;
+		
+	}
+	
+	deliver_response(200, $imagenes, $imagenes_procesadas);
 
-    $extension = substr($imagenes[$x], $longitud - 3, $longitud);
-
-    $extension = strtolower($extension);
-
-    if ($extension == 'peg') {
-        $extension = 'jpg';
-    }
-
-
-	$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$x.'.'.$extension : $imagen.'.'.$extension;
-
-}
-
-deliver_response(200, $imagenes, $imagenes_procesadas);
 }
