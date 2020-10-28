@@ -17,6 +17,17 @@ function deliver_response($status, $imagenes, $imagenes_nuevas)
 
 }
 
+function pintar_ceros($num){
+
+	$ceros="";
+	
+	for($i=0;$i<$num;$i++){
+		$ceros.="0";
+	}
+		
+	return $ceros;
+}
+
 date_default_timezone_set('Europe/Madrid');
 
 header('Content-Type:application/json');
@@ -46,11 +57,13 @@ $imagen = date('Y').'_'.date('d').'_'.date('m').'_'.date('H').'-'.date('i').'-'.
 $size=count($imagenes);
 
 if($imagenes[0]!=''){
-	
-	$y=1;
-	
+		
 	$paso="";
-
+	
+	$long=0;
+    
+    $y=1;
+    
 	for ($x = 0; $x < $size; ++$x) {
 		
 		$longitud = strlen($imagenes[$x]);
@@ -62,16 +75,12 @@ if($imagenes[0]!=''){
 		if ($extension == 'peg') {
 			$extension = 'jpg';
 		}
+		        
+		$long=strlen($y);
 				
-		if($y<10){
-			$paso="0".$y;
-		}
+		$paso=pintar_ceros(7-$long);
 		
-		else{
-			$paso="".$y;
-		}
-		
-		$imagenes_procesadas[] =($size>1) ? $imagen.'_000000'.$paso.'.'.$extension : $imagen.'.'.$extension;
+		$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$paso.$y.'.'.$extension : $imagen.'.'.$extension;
 		
 		$y++;
 		
@@ -80,3 +89,4 @@ if($imagenes[0]!=''){
 	deliver_response(200, $imagenes, $imagenes_procesadas);
 
 }
+
