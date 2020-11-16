@@ -1,5 +1,9 @@
 <?php
 
+date_default_timezone_set('Europe/Madrid');
+
+header('Content-Type:application/json');
+
 function deliver_response($status, $imagenes, $imagenes_nuevas)
 {
     header("HTTP/1.1 $status $status_message");
@@ -30,10 +34,6 @@ function pintar_ceros($num){
 }
 
 if(isset($_GET['imagenes'])){
-
-	date_default_timezone_set('Europe/Madrid');
-
-	header('Content-Type:application/json');
 
 	$imagenes = array();
 
