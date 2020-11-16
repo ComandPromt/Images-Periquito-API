@@ -26,67 +26,71 @@ function pintar_ceros($num){
 	}
 		
 	return $ceros;
+	
 }
 
-date_default_timezone_set('Europe/Madrid');
+if(isset($_GET['imagenes'])){
 
-header('Content-Type:application/json');
+	date_default_timezone_set('Europe/Madrid');
 
-$imagenes = array();
+	header('Content-Type:application/json');
 
-if ($_GET['imagenes'][0]=="[") {
+	$imagenes = array();
 
-   $imagenes = substr($_GET['imagenes'],1,strlen($_GET['imagenes'])-2);
-   
-   $imagenes = str_replace('"','',$imagenes);
-}
-
-else {
-    $imagenes = $_GET['imagenes'];
-
-}
-
-$imagenes = explode(',', $imagenes);
-
-sort($imagenes);
-
-$imagenes_procesadas = array();
-
-$imagen = date('Y').'_'.date('d').'_'.date('m').'_'.date('H').'-'.date('i').'-'.date('s');
-
-$size=count($imagenes);
-
-if($imagenes[0]!=''){
-		
-	$paso="";
+	if ( $_GET['imagenes'][0]=="[") {
 	
-	$long=0;
-    
-    $y=1;
-    
-	for ($x = 0; $x < $size; ++$x) {
-		
-		$longitud = strlen($imagenes[$x]);
+		$imagenes = substr($_GET['imagenes'],1,strlen($_GET['imagenes'])-2);
 	
-		$extension = substr($imagenes[$x], $longitud - 3, $longitud);
-	
-		$extension = strtolower($extension);
-	
-		if ($extension == 'peg') {
-			$extension = 'jpg';
-		}
-		        
-		$long=strlen($y);
-				
-		$paso=pintar_ceros(7-$long);
-		
-		$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$paso.$y.'.'.$extension : $imagen.'.'.$extension;
-		
-		$y++;
-		
+		$imagenes = str_replace('"','',$imagenes);
 	}
 	
-	deliver_response(200, $imagenes, $imagenes_procesadas);
-
+	else {
+		$imagenes = $_GET['imagenes'];
+	
+	}
+	
+	$imagenes = explode(',', $imagenes);
+	
+	sort($imagenes);
+	
+	$imagenes_procesadas = array();
+	
+	$imagen = date('Y').'_'.date('d').'_'.date('m').'_'.date('H').'-'.date('i').'-'.date('s');
+	
+	$size=count($imagenes);
+	
+	if($imagenes[0]!=''){
+			
+		$paso="";
+		
+		$long=0;
+		
+		$y=1;
+		
+		for ($x = 0; $x < $size; ++$x) {
+			
+			$longitud = strlen($imagenes[$x]);
+		
+			$extension = substr($imagenes[$x], $longitud - 3, $longitud);
+		
+			$extension = strtolower($extension);
+		
+			if ($extension == 'peg') {
+				$extension = 'jpg';
+			}
+					
+			$long=strlen($y);
+					
+			$paso=pintar_ceros(7-$long);
+			
+			$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$paso.$y.'.'.$extension : $imagen.'.'.$extension;
+			
+			$y++;
+			
+		}
+		
+		deliver_response(200, $imagenes, $imagenes_procesadas);
+	
+	}
+	
 }
-
