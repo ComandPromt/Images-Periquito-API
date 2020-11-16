@@ -49,7 +49,7 @@
 			
 				<p>Usage:
 				
-					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json?imagenes=test.png</u> 
+					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json.php?imagenes=test.png</u> 
 					
 					<a href="recibo-json.php?imagenes=test.png">Test</a>
 					
