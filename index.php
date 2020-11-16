@@ -51,7 +51,7 @@
 				
 					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json?imagenes=test.png</u> 
 					
-					<a href="recibo-json?imagenes=test.png">Test</a>
+					<a href="recibo-json.php?imagenes=test.png">Test</a>
 					
 				</p>
 				
