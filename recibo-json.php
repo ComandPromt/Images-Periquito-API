@@ -2,9 +2,8 @@
 
 function deliver_response($status, $imagenes, $imagenes_nuevas)
 {
-    header("HTTP/1.1 $status $status_message");
-    
-    
+    header("HTTP/1.1 $status");
+        
     $response['respuesta'] = $status;
     
     $response['imagenes'] = $imagenes;
