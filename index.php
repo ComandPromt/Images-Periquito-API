@@ -159,7 +159,7 @@
 								
 							</p>
 							
-							<img alt="image" class="image" src="preview/3.png" />
+							<img alt="image" class="image" src="preview/5.png" />
 					
 							<p>
 							
@@ -167,7 +167,7 @@
 								
 							</p>
 							
-							<img alt="image" class="image" src="preview/4.png" />
+							<img alt="image" class="image" src="preview/6.png" />
 					
 						</div>
 							
