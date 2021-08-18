@@ -11,8 +11,7 @@
 		<title>Documentacion</title>
 		
 		<link rel="shortcut icon" href="ico/ico.png" />
-		
-		
+				
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 		
 		<script>
@@ -41,19 +40,23 @@
 		
 			<div style="padding-left:10px;">
 			
-				<p>File names are passed and it returns it with a new name in the following date format: 
+				<h2>File names are passed and it returns it with a new name in the following date format: 
 				
-					<span>year_month_day_hour_minutes_seconds.extension</span
+					<span>year_month_day_hour_minutes_seconds.extension</span>
 					
-				</p>
+				</h2>
 			
-				<p>Usage:
+				<h2>Usage:
 				
 					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json.php?imagenes=test.png</u> 
 					
 					<a href="recibo-json.php?imagenes=test.png">Test</a>
 					
-				</p>
+					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json.php?imagenes=test.png,test2.png</u> 
+					
+					<a href="recibo-json.php?imagenes=test.png,test2.png">Test</a>
+					
+				</h2>
 				
 			</div>
 			

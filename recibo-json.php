@@ -1,7 +1,11 @@
 <?php
 
-function deliver_response($status, $imagenes, $imagenes_nuevas)
-{
+$imagenes = array();
+
+$imagenes_procesadas = array();
+
+function deliver_response($status, $imagenes, $imagenes_nuevas){
+	
     header("HTTP/1.1 $status");
         
     $response['respuesta'] = $status;
@@ -16,12 +20,76 @@ function deliver_response($status, $imagenes, $imagenes_nuevas)
 
 }
 
+function renombrar($modo){
+	
+	GLOBAL $imagenes,$imagenes_procesadas;
+	
+	$imagenes = explode(',', $imagenes);
+		
+	$size=count($imagenes);
+	
+	$paso="";
+		
+	$long=0;
+		
+	$y=1;
+	
+	$imagen = date('Y').'_'.date('d').'_'.date('m').'_'.date('H').'-'.date('i').'-'.date('s');
+	
+	for ($x = 0; $x < $size; ++$x) {
+	
+		$longitud = strlen($imagenes[$x]);
+		
+		$extension = substr($imagenes[$x], $longitud - 3, $longitud);
+		
+		$extension = strtolower($extension);
+		
+		if ($extension == 'peg') {
+			
+			$extension = 'jpg';
+			
+		}
+			
+		$long=strlen($y);
+			
+		$paso=pintar_ceros(7-$long);
+		
+		switch($modo){
+			
+			case 1:
+			
+				$imagenes_procesadas[] = ($size>1) ? $imagen.'_'.$paso.$y.'.'.$extension : $imagen.'.'.$extension;
+	
+			break;
+			
+			case 2:
+				
+				$imagenes_procesadas[] =($size>1) ? substr($imagenes[$x],0, - 4)."-".$imagen.'_'.$paso.$y.'.'.$extension:substr($imagenes[$x],0, - 4)."-".$imagen.$y.'.'.$extension ;
+	
+			break;
+			
+			case 3:
+			
+				$imagenes_procesadas[] =$paso.$y.'.'.$extension;
+	
+			break;
+			
+		}
+			
+		$y++;
+		
+	}
+	
+}
+
 function pintar_ceros($num){
 
 	$ceros="";
 	
 	for($i=0;$i<$num;$i++){
+		
 		$ceros.="0";
+		
 	}
 		
 	return $ceros;
@@ -29,14 +97,14 @@ function pintar_ceros($num){
 }
 
 if(isset($_GET['imagenes'])){
-
+	
 	date_default_timezone_set('Europe/Madrid');
 
 	header('Content-Type:application/json');
-
-	$imagenes = array();
-
-	if ( $_GET['imagenes'][0]=="[") {
+	
+	GLOBAL $imagenes,$imagenes_procesadas;
+	
+	if ($_GET['imagenes'][0]=="[") {
 	
 		$imagenes = substr($_GET['imagenes'],1,strlen($_GET['imagenes'])-2);
 	
@@ -44,54 +112,29 @@ if(isset($_GET['imagenes'])){
 	}
 	
 	else {
+		
 		$imagenes = $_GET['imagenes'];
 	
 	}
 	
-	$imagenes = explode(',', $imagenes);
-	
-	sort($imagenes);
-	
-	$imagenes_procesadas = array();
-	
-	$imagen = date('Y').'_'.date('d').'_'.date('m').'_'.date('H').'-'.date('i').'-'.date('s');
-	
-	$size=count($imagenes);
-	
-	if($imagenes[0]!=''){
+	if(isset($_GET['mode']) && (int)$_GET['mode']>0){
 			
-		$paso="";
-		
-		$long=0;
-		
-		$y=1;
-		
-		for ($x = 0; $x < $size; ++$x) {
+			renombrar($_GET['mode']);
 			
-			$longitud = strlen($imagenes[$x]);
-		
-			$extension = substr($imagenes[$x], $longitud - 3, $longitud);
-		
-			$extension = strtolower($extension);
-		
-			if ($extension == 'peg') {
-				$extension = 'jpg';
-			}
+	}
+
+	else{
+
+		if($imagenes[0]!=''){
+				
+			renombrar(1);
 					
-			$long=strlen($y);
-					
-			$paso=pintar_ceros(7-$long);
-			
-			$imagenes_procesadas[] =($size>1) ? $imagen.'_'.$paso.$y.'.'.$extension : $imagen.'.'.$extension;
-			
-			$y++;
-			
 		}
-		
-		deliver_response(200, $imagenes, $imagenes_procesadas);
 	
 	}
-	
+
+	deliver_response(200, $imagenes, $imagenes_procesadas);
+					
 }
 
 ?>
