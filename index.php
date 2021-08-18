@@ -38,7 +38,7 @@
 
 			<h1> Api file names </h1>
 		
-			<div style="padding-left:10px;">
+			<div style="float:left;padding-left:10px;">
 			
 				<h2>File names are passed and it returns it with a new name in the following date format: 
 				
@@ -46,18 +46,136 @@
 					
 				</h2>
 			
-				<h2>Usage:
+				<h2>Usage:</h2>
 				
-					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json.php?imagenes=test.png</u> 
-					
-					<a href="recibo-json.php?imagenes=test.png">Test</a>
-					
-					<u class="enlace">https://apiperiquito.herokuapp.com/recibo-json.php?imagenes=test.png,test2.png</u> 
-					
-					<a href="recibo-json.php?imagenes=test.png,test2.png">Test</a>
-					
-				</h2>
+			</div>
+			
+			<div class="centrar">
 				
+				<h2>1 file</h2>
+										
+				<div class="clear">
+				
+					<p>
+					
+						<a target="_blank" href="recibo-json.php?imagenes=test.png">Test</a>
+						
+					</p>	
+					
+					<img alt="image" class="image" src="preview/1.png" />
+					
+				</div>
+		
+			</div>
+			
+			<div class="centrar clear">
+
+				<h2>Multiple Files</h2>
+								
+				<div class="clear">
+				
+					<p>
+					
+						<a target="_blank" href="recibo-json.php?imagenes=test.png,test2.png">Test</a>
+						
+					</p>
+					
+					<img alt="image" class="image" src="preview/2.png" />
+					
+				</div>
+				
+			</div>
+			
+			
+			
+			<div class="centrar clear">
+
+				<h2>Modes</h2>
+
+				<ol>
+				
+					<li>
+						
+						<h3><span>It is the same not to put the mode, that is, the result is the same as in the previous examples</span></h3>
+												
+						<div class="clear">
+				
+							<p>
+							
+								<a target="_blank" href="recibo-json.php?imagenes=test.png&mode=1">Test</a>
+								
+							</p>
+							
+							<img alt="image" class="image" src="preview/1.png" />
+							
+							<p>
+							
+								<a target="_blank" href="recibo-json.php?imagenes=test.png,test2.png&mode=1">Test</a>
+								
+							</p>
+							
+							<img alt="image" class="image" src="preview/2.png" />
+							
+						</div>
+							
+						
+					</li>
+				
+					<li>
+						
+						<h3><span>This mode adds the file name plus the current date and time</span></h3>
+												
+						<div class="clear">
+				
+							<p>
+							
+								<a target="_blank" href="recibo-json.php?imagenes=test.png&mode=2">Test</a>
+								
+							</p>
+							
+							<img alt="image" class="image" src="preview/3.png" />
+					
+							<p>
+							
+								<a target="_blank" href="recibo-json.php?imagenes=test.png,test2.png&mode=2">Test</a>
+								
+							</p>
+							
+							<img alt="image" class="image" src="preview/4.png" />
+					
+						</div>
+													
+					</li>
+					
+					<li>
+						
+						<h3><span>This mode gives us the files with numbers</span></h3>
+												
+						<div class="clear">
+				
+							<p>
+							
+								<a target="_blank" href="recibo-json.php?imagenes=test.png&mode=3">Test</a>
+								
+							</p>
+							
+							<img alt="image" class="image" src="preview/3.png" />
+					
+							<p>
+							
+								<a target="_blank" href="recibo-json.php?imagenes=test.png,test2.png&mode=3">Test</a>
+								
+							</p>
+							
+							<img alt="image" class="image" src="preview/4.png" />
+					
+						</div>
+							
+						
+					</li>
+									
+				</ol>
+										
 			</div>
 			
 		</div>
@@ -65,4 +183,3 @@
 	</body>
 	
 </html>
-

@@ -3,9 +3,26 @@ body{
 	text-align:center;
 }
 
+.image{
+	
+	padding-top:2em;
+
+}
+
+.centrar{
+	
+	float:left;
+	
+	margin:auto;
+	
+	text-align:center;
+	
+}
+
 .clear {
 
   clear: both;
+  
 }
 
 .negrita{
