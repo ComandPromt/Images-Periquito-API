@@ -17,4 +17,4 @@ API that returns the names of the images in YYY_MM_DD_h_i_.extension format
 
 ![6](preview/6.png)
 
-[API](https://apiperiquito.herokuapp.com)
+[API](https://api-periquito.onrender.com/)
